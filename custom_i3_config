@@ -1,0 +1,98 @@
+#! /bin/bash
+
+#----------------------------------------------------------------This config is only made for i3wm users----------------------------------------------
+sudo apt install vlc -y
+sudo apt install libinput -y
+sudo apt install libinput-bin -y
+sudo apt install libinput-dev -y
+sudo apt install neofetch -y
+sudo apt install feh -y
+sudo apt install brightnessctl -y
+sudo apt install acpi -y
+sudo apt install htop -y
+sudo apt install vim -y
+
+#-----------------------------------------------------------Optional tools-----------------------------------------------------------------------------
+#-------------------------------------------------------Tor Browser installation-----------------------------------------------------------------------
+sudo apt install torbrowser-launcher -y
+#------------------------------------------------------------------------------------------------------------------------------------------------------
+sudo apt install curl -y
+
+#-------------------------------------------------------Brave Browser installation---------------------------------------------------------------------
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+sudo apt update
+sudo apt install brave-browser -y
+#------------------------------------------------------------------------------------------------------------------------------------------------------
+
+sudo apt install wget -y
+sudo apt install guake -y
+sudo apt install goldendict -y
+sudo apt install youtubedl-gui -y
+sudo apt install git -y
+sudo apt install tor -y
+sudo apt install transmission -y
+sudo apt install samba -y
+sudo apt install onionshare -y
+sudo apt install proxychains -y
+sudo apt install cheese -y
+sudo apt install vsftpd -y
+sudo apt install ufw -y
+
+#create a config file for touchpad configurations
+
+sudo touch /etc/X11/xorg.conf.d/90-touchpad.conf
+
+#append all the config codes to 90-touchpad config file
+#------------------------------------------------------Don't alter these set of codes-----------------------------------------------------------------
+tee -a /etc/X11/xorg.conf.d/90-touchpad.conf <<EOF
+Section "InputClass"
+	Identifier "touchpad"
+	MatchIsTouchpad "on"
+	Driver "libinput"
+	Option "Tapping" "on"
+	Option "NaturalScrolling" "on"
+	Option "ScrollMethod" "twofinger"
+	Option "TappingButtonMap" "lrm"
+EndSection
+EOF
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#update i3wm config file
+
+tee -a ~/.config/i3/config <<EOF
+#=============================================================================================
+#--------------------------------------CUSTOMISATIONS-----------------------------------------
+#=============================================================================================
+
+### Desktop Background image(uncomment the below line and replace <path to image file> with the actual path.)
+
+#exec_always feh --bg-scale <path to image file>
+
+
+#------------------------------------------------------Don't alter these set of codes-----------------------------------------------------------------
+###Shutdown opttions
+#bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
+mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
+  bindsym l exec i3-msg exit
+  bindsym r exec systemctl reboot
+  bindsym s exec systemctl poweroff
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
+EOF
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#Update bashrc and zshrc to automatically run neofetch while startup
+
+tee -a .bashrc <<EOF
+neofetch
+EOF
+
+tee -a .zshrc <<EOF
+neofetch
+EOF
+
+#update the system
+sudo apt update
