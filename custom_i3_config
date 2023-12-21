@@ -15,7 +15,7 @@ sudo apt install figlet -y
 sudo apt install toilet -y
 sudo apt install build-essential -y
 sudo apt install net-tools -y
-sudo apt install openvpn
+sudo apt install openvpn -y
 
 #-----------------------------------------------------------Optional tools-----------------------------------------------------------------------------
 #-------------------------------------------------------Tor Browser installation-----------------------------------------------------------------------
