@@ -90,7 +90,7 @@ mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
   bindsym Escape mode "default"
   bindsym Return mode "default"
 }
-bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
+bindsym "$mod+x" mode "exit: [l]ogout, [r]eboot, [s]hutdown"
 EOF
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
 #----------------------------------------Update bashrc and zshrc to automatically run neofetch while startup------------------------------------------
