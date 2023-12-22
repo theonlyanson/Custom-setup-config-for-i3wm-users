@@ -18,20 +18,8 @@ sudo apt install net-tools -y
 sudo apt install openvpn -y
 
 #-----------------------------------------------------------Optional tools-----------------------------------------------------------------------------
-#-------------------------------------------------------Tor Browser installation-----------------------------------------------------------------------
-sudo apt install torbrowser-launcher -y
-#------------------------------------------------------------------------------------------------------------------------------------------------------
+
 sudo apt install curl -y
-
-#-------------------------------------------------------Brave Browser installation---------------------------------------------------------------------
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-
-sudo apt update
-sudo apt install brave-browser -y
-#------------------------------------------------------------------------------------------------------------------------------------------------------
-
 sudo apt install wget -y
 sudo apt install guake -y
 sudo apt install goldendict -y
@@ -46,12 +34,28 @@ sudo apt install cheese -y
 sudo apt install vsftpd -y
 sudo apt install ufw -y
 
+#-------------------------------------------------------Tor Browser installation-----------------------------------------------------------------------
+sudo apt install torbrowser-launcher -y
+#------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+#-------------------------------------------------------Brave Browser installation---------------------------------------------------------------------
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+sudo apt update
+sudo apt install brave-browser -y
+#------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------Touchpad Config--------------------------------------------------------------------------
 #create a config file for touchpad configurations
 
 sudo touch /etc/X11/xorg.conf.d/90-touchpad.conf
 
 #append all the config codes to 90-touchpad config file
-#------------------------------------------------------Don't alter these set of codes-----------------------------------------------------------------
+#-------------------------------------------------------Don't alter these set of codes-----------------------------------------------------------------
 tee -a /etc/X11/xorg.conf.d/90-touchpad.conf <<EOF
 Section "InputClass"
 	Identifier "touchpad"
@@ -77,7 +81,7 @@ tee -a ~/.config/i3/config <<EOF
 
 
 #------------------------------------------------------Don't alter these set of codes-----------------------------------------------------------------
-###Shutdown opttions
+###Shutdown options
 #bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
 mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
   bindsym l exec i3-msg exit
