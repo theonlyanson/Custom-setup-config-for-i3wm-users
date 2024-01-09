@@ -16,6 +16,7 @@ sudo apt install toilet -y
 sudo apt install build-essential -y
 sudo apt install net-tools -y
 sudo apt install openvpn -y
+sudo apt install evince
 
 #-----------------------------------------------------------Optional tools-----------------------------------------------------------------------------
 
