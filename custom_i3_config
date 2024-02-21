@@ -16,7 +16,8 @@ sudo apt install toilet -y
 sudo apt install build-essential -y
 sudo apt install net-tools -y
 sudo apt install openvpn -y
-sudo apt install evince
+sudo apt install evince -y
+sudo apt install scrot -y
 
 #-----------------------------------------------------------Optional tools-----------------------------------------------------------------------------
 
@@ -83,15 +84,16 @@ tee -a ~/.config/i3/config <<EOF
 
 #------------------------------------------------------Don't alter these set of codes-----------------------------------------------------------------
 ###Shutdown options
-#bindsym \$mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
-mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
+#bindsym \$mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown, [n]ap "
+mode "exit: [l]ogout, [r]eboot, [s]hutdown, [n]ap" {
   bindsym l exec i3-msg exit
   bindsym r exec systemctl reboot
   bindsym s exec systemctl poweroff
+  bindsym n exec systemctl suspend
   bindsym Escape mode "default"
   bindsym Return mode "default"
 }
-bindsym \$mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
+bindsym \$mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown, [n]ap"
 EOF
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
 #----------------------------------------Update bashrc and zshrc to automatically run neofetch while startup------------------------------------------
